@@ -6,30 +6,39 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8853815D2F20AF610085DD8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885381532F20AF610085DD8B /* AppDelegate.swift */; };
+		8853815E2F20AF610085DD8B /* Effective_Mobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 885381552F20AF610085DD8B /* Effective_Mobile.xcdatamodeld */; };
+		8853815F2F20AF610085DD8B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885381592F20AF610085DD8B /* SceneDelegate.swift */; };
+		885381602F20AF610085DD8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 885381542F20AF610085DD8B /* Assets.xcassets */; };
+		885381622F20AF610085DD8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 885381582F20AF610085DD8B /* LaunchScreen.storyboard */; };
+		885381642F20B2260085DD8B /* ToDoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885381632F20B2260085DD8B /* ToDoEntity.swift */; };
+		885381662F20B28A0085DD8B /* ToDoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885381652F20B28A0085DD8B /* ToDoInteractor.swift */; };
+		885381682F20B2CB0085DD8B /* MainViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885381672F20B2CB0085DD8B /* MainViewControllerPresenter.swift */; };
+		8853816A2F20B2D90085DD8B /* DetainViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885381692F20B2D90085DD8B /* DetainViewControllerPresenter.swift */; };
+		8853816E2F20B2FB0085DD8B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8853816D2F20B2FB0085DD8B /* DetailViewController.swift */; };
+		885381702F20B3300085DD8B /* UserRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8853816F2F20B3300085DD8B /* UserRouter.swift */; };
+		885381732F20B9CD0085DD8B /* ToDoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885381722F20B9CD0085DD8B /* ToDoListCell.swift */; };
+		886919D72F20FD300022DA44 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886919D52F20FD300022DA44 /* MainViewController.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		8853812D2F20AD730085DD8B /* Effective Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Effective Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		885381532F20AF610085DD8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		885381542F20AF610085DD8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		885381562F20AF610085DD8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		885381572F20AF610085DD8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		885381592F20AF610085DD8B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		8853815B2F20AF610085DD8B /* Effective_Mobile.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Effective_Mobile.xcdatamodel; sourceTree = "<group>"; };
+		885381632F20B2260085DD8B /* ToDoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoEntity.swift; sourceTree = "<group>"; };
+		885381652F20B28A0085DD8B /* ToDoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoInteractor.swift; sourceTree = "<group>"; };
+		885381672F20B2CB0085DD8B /* MainViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerPresenter.swift; sourceTree = "<group>"; };
+		885381692F20B2D90085DD8B /* DetainViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetainViewControllerPresenter.swift; sourceTree = "<group>"; };
+		8853816D2F20B2FB0085DD8B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		8853816F2F20B3300085DD8B /* UserRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRouter.swift; sourceTree = "<group>"; };
+		885381722F20B9CD0085DD8B /* ToDoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListCell.swift; sourceTree = "<group>"; };
+		886919D52F20FD300022DA44 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		885381422F20AD750085DD8B /* Exceptions for "Effective Mobile" folder in "Effective Mobile" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 8853812C2F20AD730085DD8B /* Effective Mobile */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		8853812F2F20AD730085DD8B /* Effective Mobile */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				885381422F20AD750085DD8B /* Exceptions for "Effective Mobile" folder in "Effective Mobile" target */,
-			);
-			path = "Effective Mobile";
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		8853812A2F20AD730085DD8B /* Frameworks */ = {
@@ -45,7 +54,7 @@
 		885381242F20AD730085DD8B = {
 			isa = PBXGroup;
 			children = (
-				8853812F2F20AD730085DD8B /* Effective Mobile */,
+				8853815A2F20AF610085DD8B /* Effective Mobile */,
 				8853812E2F20AD730085DD8B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,6 +65,83 @@
 				8853812D2F20AD730085DD8B /* Effective Mobile.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8853814D2F20AF610085DD8B /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				885381632F20B2260085DD8B /* ToDoEntity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		8853814E2F20AF610085DD8B /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				885381652F20B28A0085DD8B /* ToDoInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		8853814F2F20AF610085DD8B /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				885381672F20B2CB0085DD8B /* MainViewControllerPresenter.swift */,
+				885381692F20B2D90085DD8B /* DetainViewControllerPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		885381502F20AF610085DD8B /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				8853816F2F20B3300085DD8B /* UserRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		885381522F20AF610085DD8B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				886919D62F20FD300022DA44 /* MainViewController */,
+				8853816D2F20B2FB0085DD8B /* DetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8853815A2F20AF610085DD8B /* Effective Mobile */ = {
+			isa = PBXGroup;
+			children = (
+				885381712F20B8B70085DD8B /* Cell */,
+				885381522F20AF610085DD8B /* View */,
+				8853814E2F20AF610085DD8B /* Interactor */,
+				8853814F2F20AF610085DD8B /* Presenter */,
+				8853814D2F20AF610085DD8B /* Entity */,
+				885381502F20AF610085DD8B /* Router */,
+				885381532F20AF610085DD8B /* AppDelegate.swift */,
+				885381542F20AF610085DD8B /* Assets.xcassets */,
+				885381552F20AF610085DD8B /* Effective_Mobile.xcdatamodeld */,
+				885381562F20AF610085DD8B /* Info.plist */,
+				885381582F20AF610085DD8B /* LaunchScreen.storyboard */,
+				885381592F20AF610085DD8B /* SceneDelegate.swift */,
+			);
+			path = "Effective Mobile";
+			sourceTree = "<group>";
+		};
+		885381712F20B8B70085DD8B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				885381722F20B9CD0085DD8B /* ToDoListCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		886919D62F20FD300022DA44 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				886919D52F20FD300022DA44 /* MainViewController.swift */,
+			);
+			path = MainViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -72,9 +158,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				8853812F2F20AD730085DD8B /* Effective Mobile */,
 			);
 			name = "Effective Mobile";
 			packageProductDependencies = (
@@ -122,6 +205,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				885381602F20AF610085DD8B /* Assets.xcassets in Resources */,
+				885381622F20AF610085DD8B /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,10 +217,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8853816E2F20B2FB0085DD8B /* DetailViewController.swift in Sources */,
+				886919D72F20FD300022DA44 /* MainViewController.swift in Sources */,
+				885381682F20B2CB0085DD8B /* MainViewControllerPresenter.swift in Sources */,
+				8853816A2F20B2D90085DD8B /* DetainViewControllerPresenter.swift in Sources */,
+				8853815D2F20AF610085DD8B /* AppDelegate.swift in Sources */,
+				885381642F20B2260085DD8B /* ToDoEntity.swift in Sources */,
+				8853815E2F20AF610085DD8B /* Effective_Mobile.xcdatamodeld in Sources */,
+				885381662F20B28A0085DD8B /* ToDoInteractor.swift in Sources */,
+				8853815F2F20AF610085DD8B /* SceneDelegate.swift in Sources */,
+				885381732F20B9CD0085DD8B /* ToDoListCell.swift in Sources */,
+				885381702F20B3300085DD8B /* UserRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		885381582F20AF610085DD8B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				885381572F20AF610085DD8B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		885381442F20AD750085DD8B /* Debug */ = {
@@ -150,9 +257,10 @@
 				INFOPLIST_FILE = "Effective Mobile/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -182,9 +290,10 @@
 				INFOPLIST_FILE = "Effective Mobile/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -345,6 +454,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		885381552F20AF610085DD8B /* Effective_Mobile.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8853815B2F20AF610085DD8B /* Effective_Mobile.xcdatamodel */,
+			);
+			currentVersion = 8853815B2F20AF610085DD8B /* Effective_Mobile.xcdatamodel */;
+			path = Effective_Mobile.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 885381252F20AD730085DD8B /* Project object */;
 }
