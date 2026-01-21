@@ -3,6 +3,7 @@ import UIKit
 protocol MainViewControllerProtocol: AnyObject {
     func showTodos(_ todos: [Todo])
     func showError(_ message: String)
+    func updateTodo(at index: Int, todo: Todo)
 }
 
 final class MainViewController: UIViewController, MainViewControllerProtocol {
@@ -39,13 +40,11 @@ final class MainViewController: UIViewController, MainViewControllerProtocol {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
-    
-    
     
     func showTodos(_ todos: [Todo]) {
         self.todos = todos
@@ -55,8 +54,17 @@ final class MainViewController: UIViewController, MainViewControllerProtocol {
     func showError(_ message: String) {
         
     }
+    
+    func updateTodo(at index: Int, todo: Todo) {
+        todos[index] = todo
+
+        let indexPath = IndexPath(row: index, section: 0)
+        tableView.reloadRows(at: [indexPath], with: .none)
+    }
 }
-// MARK: - Extensions
+
+
+// MARK: - TableView Data Source and Delegate
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
@@ -66,24 +74,31 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ToDoListCell.identifier, for: indexPath) as? ToDoListCell else {
-            return UITableViewCell()
-        }
-        let todo = todos[indexPath.row]
-        cell.configurate(with: todo)
-        return cell
+        let cell = tableView.dequeueReusableCell(
+                withIdentifier: ToDoListCell.identifier,
+                for: indexPath
+            ) as! ToDoListCell
+
+            let todo = todos[indexPath.row]
+            cell.configurate(with: todo)
+
+            cell.onStatusTap = { [weak self] in
+                self?.presenter?.toggleTodoStatus(at: indexPath.row)
+            }
+
+            return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
-    func tableView(_ tableView: UITableView,commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
+//    func tableView(_ tableView: UITableView,commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        
 //        if editingStyle == .delete {
 //            presenter?.didDeleteTodo(at: indexPath.row)
 //        }
-    }
+//    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 106

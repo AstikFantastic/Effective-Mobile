@@ -11,10 +11,7 @@ final class ToDoListCell: UITableViewCell {
     private let checkMark = UIImageView()
     private let containerView = UIView()
     
-    private let attributes: [NSAttributedString.Key: Any] = [
-        .strikethroughStyle: NSUnderlineStyle.single.rawValue,
-        .foregroundColor: UIColor.systemGray
-    ]
+    var onStatusTap: (() -> Void)?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -23,6 +20,13 @@ final class ToDoListCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        title.attributedText = nil
+        checkMark.isHidden = true
+        statusView.backgroundColor = .clear
     }
     
     private func setupUI() {
@@ -83,34 +87,39 @@ final class ToDoListCell: UITableViewCell {
             date.leadingAnchor.constraint(equalTo: title.leadingAnchor),
             date.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -7)
         ])
-
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(statusTapped))
+        statusView.addGestureRecognizer(tap)
+        statusView.isUserInteractionEnabled = true
+    }
+    
+    @objc func statusTapped() {
+        onStatusTap?()
     }
     
     func configurate(with todo: Todo) {
-        title.text = String("Task № \(todo.id)")
-        descriptionLabel.text = todo.todo
-        
-        date.text = "Today"
-        
-        if todo.completed {
+        let attributes: [NSAttributedString.Key: Any] = todo.completed
+                ? [
+                    .strikethroughStyle: NSUnderlineStyle.single.rawValue,
+                    .foregroundColor: UIColor.systemGray
+                ] : [
+                    .strikethroughStyle: 0,
+                    .foregroundColor: UIColor.white
+                ]
+
             title.attributedText = NSAttributedString(
-                string: title.text ?? "Tast № \(todo.id)",
+                string: "Task № \(todo.id)",
                 attributes: attributes
             )
-            statusView.backgroundColor = .systemYellow
-            statusView.layer.borderColor = UIColor.systemYellow.cgColor
-            checkMark.isHidden = false
-        } else {
-            title.attributedText = NSAttributedString(
-                string: "Tast № \(todo.id)",
-                attributes: [.foregroundColor: UIColor.white]
-            )
-            statusView.backgroundColor = .clear
-            statusView.layer.borderColor = UIColor.systemYellow.cgColor
+
+        if !todo.completed {
             statusView.layer.borderWidth = 1
-            checkMark.isHidden = true
+            statusView.layer.borderColor = UIColor.systemYellow.cgColor
+        } else {
+            statusView.backgroundColor = .yellow
         }
+            descriptionLabel.text = todo.todo
+            date.text = "Today"
+            checkMark.isHidden = !todo.completed
     }
 }
-
-
