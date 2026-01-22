@@ -3,15 +3,16 @@ import UIKit
 protocol MainViewControllerPresenterProtocol: AnyObject {
     func viewDidLoad()
     func didTapDelete(at index: Int)
+    func didTapShare()
+    func didTapEdit()
     func search(text: String)
     func didLoadTodos(_ todos: [Todo])
     func didFail(error: Error)
-    
     func toggleTodoStatus(todoID: Int)
-    
 }
 
 final class MainViewControllerPresenter: MainViewControllerPresenterProtocol {
+    
     
     weak var view: MainViewControllerProtocol?
     var interactor: TodoListInteractorProtocol?
@@ -46,13 +47,20 @@ final class MainViewControllerPresenter: MainViewControllerPresenterProtocol {
         
     }
     
+    func didTapShare() {
+        
+    }
+    
+    func didTapEdit() {
+        
+    }
+    
     func search(text: String) {
         guard !text.isEmpty else {
             searchedTodos = todos
             view?.showTodos(todos)
             return
         }
-        
         searchedTodos = todos.filter {
             $0.todo.lowercased().contains(text.lowercased())
         }

@@ -53,14 +53,16 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                 title: "Edit",
                 image: UIImage(systemName: "square.and.pencil")
             ) { _ in
-                
+                self.presenter?.didTapEdit()
+                print("Make sone changes")
             }
             
             let share = UIAction(
                 title: "Share",
                 image: UIImage(systemName: "square.and.arrow.up")
             ) { _ in
-                
+                self.presenter?.didTapShare()
+                print("Share it")
             }
             
             let delete = UIAction(
@@ -68,7 +70,8 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                 image: UIImage(systemName: "trash"),
                 attributes: .destructive
             ) { _ in
-                
+                self.presenter?.didTapDelete(at: indexPath.row)
+                print("DELETE")
             }
             
             return UIMenu(children: [edit, share, delete])
