@@ -17,7 +17,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         cell.configurate(with: todo)
         
         cell.onStatusTap = { [weak self] in
-            self?.presenter?.toggleTodoStatus(at: indexPath.row)
+            self?.presenter?.toggleTodoStatus(todoID: todo.id)
         }
         
         return cell
@@ -37,4 +37,75 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 106
     }
+    
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        
+        let todo = todos[indexPath.row]
+        
+        return UIContextMenuConfiguration(
+            identifier: indexPath as NSIndexPath,
+            previewProvider: {
+                return TodoCellPreviewController(todo: todo)
+            }
+        ) { _ in
+            
+            let edit = UIAction(
+                title: "Edit",
+                image: UIImage(systemName: "square.and.pencil")
+            ) { _ in
+                
+            }
+            
+            let share = UIAction(
+                title: "Share",
+                image: UIImage(systemName: "square.and.arrow.up")
+            ) { _ in
+                
+            }
+            
+            let delete = UIAction(
+                title: "Delete",
+                image: UIImage(systemName: "trash"),
+                attributes: .destructive
+            ) { _ in
+                
+            }
+            
+            return UIMenu(children: [edit, share, delete])
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        
+        showBlurImmediately()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+            self.animateBlurIn()
+        }
+        
+        guard let indexPath = configuration.identifier as? NSIndexPath,
+              let cell = tableView.cellForRow(at: indexPath as IndexPath)
+        else { return nil }
+        
+        let params = UIPreviewParameters()
+        params.backgroundColor = .clear
+        
+        return UITargetedPreview(view: cell, parameters: params)
+    }
+    
+    func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        
+        hideBlur()
+        
+        guard let indexPath = configuration.identifier as? NSIndexPath,
+              let cell = tableView.cellForRow(at: indexPath as IndexPath)
+        else { return nil }
+        
+        let params = UIPreviewParameters()
+        params.backgroundColor = .clear
+        
+        return UITargetedPreview(view: cell, parameters: params)
+    }
+    
+    
 }

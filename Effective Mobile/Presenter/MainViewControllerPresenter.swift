@@ -7,7 +7,7 @@ protocol MainViewControllerPresenterProtocol: AnyObject {
     func didLoadTodos(_ todos: [Todo])
     func didFail(error: Error)
     
-    func toggleTodoStatus(at index: Int)
+    func toggleTodoStatus(todoID: Int)
     
 }
 
@@ -32,16 +32,16 @@ final class MainViewControllerPresenter: MainViewControllerPresenterProtocol {
         view?.showError(error.localizedDescription)
     }
     
-    func toggleTodoStatus(at index: Int) {
-        guard index < searchedTodos.count else { return }
-        let id = searchedTodos[index].id
-        if let realIndex = todos.firstIndex(where: {$0.id == id}) {
-            todos[realIndex].completed.toggle()
+    func toggleTodoStatus(todoID: Int) {
+        guard let indexInAll = todos.firstIndex(where: { $0.id == todoID }) else { return }
+        todos[indexInAll].completed.toggle()
+        
+        if let indexInVisible = searchedTodos.firstIndex(where: { $0.id == todoID }) {
+            searchedTodos[indexInVisible].completed.toggle()
+            view?.updateTodo(at: indexInVisible, todo: searchedTodos[indexInVisible])
         }
-        searchedTodos[index].completed.toggle()
-        view?.updateTodo(at: index, todo: todos[index])
     }
-    
+        
     func didTapDelete(at index: Int) {
         
     }

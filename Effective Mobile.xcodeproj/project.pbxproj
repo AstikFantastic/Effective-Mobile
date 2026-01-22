@@ -22,6 +22,7 @@
 		886919D72F20FD300022DA44 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886919D52F20FD300022DA44 /* MainViewController.swift */; };
 		88BFD4692F21FBE60018FE36 /* MainVC+TableViewDS+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BFD4682F21FBE60018FE36 /* MainVC+TableViewDS+Delegate.swift */; };
 		88BFD46B2F220B290018FE36 /* MainVC+SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BFD46A2F220B290018FE36 /* MainVC+SearchBar.swift */; };
+		88BFD46F2F2261B60018FE36 /* TodoCellPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BFD46E2F2261B60018FE36 /* TodoCellPreviewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		886919D52F20FD300022DA44 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		88BFD4682F21FBE60018FE36 /* MainVC+TableViewDS+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+TableViewDS+Delegate.swift"; sourceTree = "<group>"; };
 		88BFD46A2F220B290018FE36 /* MainVC+SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+SearchBar.swift"; sourceTree = "<group>"; };
+		88BFD46E2F2261B60018FE36 /* TodoCellPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCellPreviewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			children = (
 				886919D62F20FD300022DA44 /* MainViewController */,
 				8853816D2F20B2FB0085DD8B /* DetailViewController.swift */,
+				88BFD46E2F2261B60018FE36 /* TodoCellPreviewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -116,7 +119,7 @@
 		8853815A2F20AF610085DD8B /* Effective Mobile */ = {
 			isa = PBXGroup;
 			children = (
-				885381712F20B8B70085DD8B /* Cell */,
+				885381712F20B8B70085DD8B /* Helpers */,
 				885381522F20AF610085DD8B /* View */,
 				8853814E2F20AF610085DD8B /* Interactor */,
 				8853814F2F20AF610085DD8B /* Presenter */,
@@ -132,12 +135,12 @@
 			path = "Effective Mobile";
 			sourceTree = "<group>";
 		};
-		885381712F20B8B70085DD8B /* Cell */ = {
+		885381712F20B8B70085DD8B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				885381722F20B9CD0085DD8B /* ToDoListCell.swift */,
 			);
-			path = Cell;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		886919D62F20FD300022DA44 /* MainViewController */ = {
@@ -223,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88BFD46F2F2261B60018FE36 /* TodoCellPreviewController.swift in Sources */,
 				88BFD46B2F220B290018FE36 /* MainVC+SearchBar.swift in Sources */,
 				8853816E2F20B2FB0085DD8B /* DetailViewController.swift in Sources */,
 				886919D72F20FD300022DA44 /* MainViewController.swift in Sources */,

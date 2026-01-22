@@ -6,10 +6,7 @@ extension MainViewController: UISearchBarDelegate {
         presenter?.search(text: searchText)
     }
     
-    func searchBarCancelButtonClicked(_ searchbar: UISearchBar) {
-        searchbar.text = ""
-        presenter?.search(text: "")
-        searchbar.resignFirstResponder()
-        
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }

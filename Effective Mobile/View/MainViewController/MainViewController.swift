@@ -24,12 +24,14 @@ final class MainViewController: UIViewController, MainViewControllerProtocol {
             weight: .regular
         )
     )
+    private var blurView: UIVisualEffectView?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
         presenter?.viewDidLoad()
+        hideKeyboard()
     }
     
     // MARK: - Setup UI
@@ -55,8 +57,10 @@ final class MainViewController: UIViewController, MainViewControllerProtocol {
         tableView.backgroundColor = .black
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = .systemGray
+        tableView.keyboardDismissMode = .onDrag
         tableView.dataSource = self
         tableView.delegate = self
+        
         
         view.addSubview(tableView)
         
@@ -108,6 +112,20 @@ final class MainViewController: UIViewController, MainViewControllerProtocol {
         ])
     }
     
+    // MARK: - Hide keyboard after screen tap
+    
+    func hideKeyboard() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc private func hideKeyBoard() {
+        view.endEditing(true)
+    }
+    
+    //MARK: - Protocol methods
+    
     func showTodos(_ todos: [Todo]) {
         self.todos = todos
         tableView.reloadData()
@@ -122,5 +140,44 @@ final class MainViewController: UIViewController, MainViewControllerProtocol {
         let indexPath = IndexPath(row: index, section: 0)
         tableView.reloadRows(at: [indexPath], with: .none)
     }
+    
+    //MARK: - Blur Methods
+    
+    func showBlurImmediately() {
+        guard blurView == nil else { return }
+
+        let blurEffect = UIBlurEffect(style: .systemChromeMaterialDark)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame = view.bounds
+        blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurView.alpha = 0
+
+        view.insertSubview(blurView, aboveSubview: tableView)
+        self.blurView = blurView
+    }
+
+    func animateBlurIn() {
+        UIView.animate(
+            withDuration: 0.2,
+            delay: 0,
+            options: [.curveEaseOut]
+        ) {
+            self.blurView?.alpha = 1
+        }
+    }
+    
+    func hideBlur() {
+        guard let blurView else { return }
+        
+        UIView.animate(withDuration: 0.25, animations: {
+            blurView.alpha = 0
+        }) { _ in
+            blurView.removeFromSuperview()
+            self.blurView = nil
+        }
+    }
+    
 }
+
+
 

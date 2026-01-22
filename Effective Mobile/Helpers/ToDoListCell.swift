@@ -33,6 +33,12 @@ final class ToDoListCell: UITableViewCell {
         containerView.backgroundColor = .black
         
         statusView.layer.cornerRadius = 12
+        let tap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(statusTapped)
+        )
+        statusView.addGestureRecognizer(tap)
+        statusView.isUserInteractionEnabled = true
         
         checkMark.image = UIImage(systemName: "checkmark")
         checkMark.tintColor = .black
@@ -88,9 +94,6 @@ final class ToDoListCell: UITableViewCell {
             date.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -7)
         ])
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(statusTapped))
-        statusView.addGestureRecognizer(tap)
-        statusView.isUserInteractionEnabled = true
     }
     
     @objc func statusTapped() {
