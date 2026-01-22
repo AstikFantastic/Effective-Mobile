@@ -16,6 +16,7 @@ final class MainViewControllerPresenter: MainViewControllerPresenterProtocol {
     weak var view: MainViewControllerProtocol?
     var interactor: TodoListInteractorProtocol?
     private var todos: [Todo] = []
+    private var searchedTodos: [Todo] = []
     
     func viewDidLoad() {
         interactor?.loadTodos()
@@ -23,6 +24,7 @@ final class MainViewControllerPresenter: MainViewControllerPresenterProtocol {
     
     func didLoadTodos(_ todos: [Todo]) {
         self.todos = todos
+        searchedTodos = todos
         view?.showTodos(todos)
     }
     
@@ -31,8 +33,12 @@ final class MainViewControllerPresenter: MainViewControllerPresenterProtocol {
     }
     
     func toggleTodoStatus(at index: Int) {
-        guard index < todos.count else { return }
-        todos[index].completed.toggle()
+        guard index < searchedTodos.count else { return }
+        let id = searchedTodos[index].id
+        if let realIndex = todos.firstIndex(where: {$0.id == id}) {
+            todos[realIndex].completed.toggle()
+        }
+        searchedTodos[index].completed.toggle()
         view?.updateTodo(at: index, todo: todos[index])
     }
     
@@ -41,6 +47,15 @@ final class MainViewControllerPresenter: MainViewControllerPresenterProtocol {
     }
     
     func search(text: String) {
+        guard !text.isEmpty else {
+            searchedTodos = todos
+            view?.showTodos(todos)
+            return
+        }
         
+        searchedTodos = todos.filter {
+            $0.todo.lowercased().contains(text.lowercased())
+        }
+        view?.showTodos(searchedTodos)
     }
 }

@@ -10,7 +10,7 @@ final class MainViewController: UIViewController, MainViewControllerProtocol {
     
     var presenter: MainViewControllerPresenterProtocol?
     
-    private var todos: [Todo] = []
+    var todos: [Todo] = []
     private let tableView = UITableView()
     private let headerLabel = UILabel()
     private let searchBar = UISearchBar()
@@ -29,7 +29,6 @@ final class MainViewController: UIViewController, MainViewControllerProtocol {
         super.viewDidLoad()
         
         setupUI()
-        
         presenter?.viewDidLoad()
     }
     
@@ -48,6 +47,7 @@ final class MainViewController: UIViewController, MainViewControllerProtocol {
         searchBar.placeholder = "Search"
         searchBar.backgroundColor = .darkGray
         searchBar.barTintColor = .black
+        searchBar.delegate = self
         
         view.addSubview(searchBar)
         
@@ -72,7 +72,7 @@ final class MainViewController: UIViewController, MainViewControllerProtocol {
         
         addNewTask.setImage(image, for: .normal)
         addNewTask.imageView?.tintColor = .yellow
-
+        
         
         view.addSubview(addNewTask)
         
@@ -104,7 +104,7 @@ final class MainViewController: UIViewController, MainViewControllerProtocol {
             
             addNewTask.centerYAnchor.constraint(equalTo: allTasksCount.centerYAnchor),
             addNewTask.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-
+            
         ])
     }
     
@@ -119,50 +119,8 @@ final class MainViewController: UIViewController, MainViewControllerProtocol {
     
     func updateTodo(at index: Int, todo: Todo) {
         todos[index] = todo
-
         let indexPath = IndexPath(row: index, section: 0)
         tableView.reloadRows(at: [indexPath], with: .none)
     }
 }
 
-
-// MARK: - TableView Data Source and Delegate
-
-extension MainViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        todos.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(
-                withIdentifier: ToDoListCell.identifier,
-                for: indexPath
-            ) as! ToDoListCell
-
-            let todo = todos[indexPath.row]
-            cell.configurate(with: todo)
-
-            cell.onStatusTap = { [weak self] in
-                self?.presenter?.toggleTodoStatus(at: indexPath.row)
-            }
-
-            return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-    }
-    
-//    func tableView(_ tableView: UITableView,commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        
-//        if editingStyle == .delete {
-//            presenter?.didDeleteTodo(at: indexPath.row)
-//        }
-//    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 106
-    }
-}
