@@ -5,7 +5,7 @@ final class ToDoListCell: UITableViewCell {
     static let identifier = "ToDoListCell"
     
     private let title = UILabel()
-    private var date = UILabel() // Скорректировать дату
+    private var dateLabel = UILabel() // Скорректировать дату
     private let descriptionLabel = UILabel()
     private let statusView = UIView()
     private let checkMark = UIImageView()
@@ -53,17 +53,17 @@ final class ToDoListCell: UITableViewCell {
         descriptionLabel.textAlignment = .justified
         descriptionLabel.numberOfLines = 2
         
-        date.font = .systemFont(ofSize: 13)
-        date.textColor = .systemGray
+        dateLabel.font = .systemFont(ofSize: 13)
+        dateLabel.textColor = .systemGray
         
         contentView.addSubview(containerView)
         containerView.addSubview(statusView)
         statusView.addSubview(checkMark)
         containerView.addSubview(title)
         containerView.addSubview(descriptionLabel)
-        containerView.addSubview(date)
+        containerView.addSubview(dateLabel)
         
-        [containerView, statusView, title, descriptionLabel, date, checkMark].forEach {
+        [containerView, statusView, title, descriptionLabel, dateLabel, checkMark].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -90,8 +90,8 @@ final class ToDoListCell: UITableViewCell {
             descriptionLabel.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10),
             
             
-            date.leadingAnchor.constraint(equalTo: title.leadingAnchor),
-            date.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -7)
+            dateLabel.leadingAnchor.constraint(equalTo: title.leadingAnchor),
+            dateLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -7)
         ])
         
     }
@@ -102,27 +102,42 @@ final class ToDoListCell: UITableViewCell {
     
     func configurate(with todo: Todo) {
         let attributes: [NSAttributedString.Key: Any] = todo.completed
-                ? [
-                    .strikethroughStyle: NSUnderlineStyle.single.rawValue,
-                    .foregroundColor: UIColor.systemGray
-                ] : [
-                    .strikethroughStyle: 0,
-                    .foregroundColor: UIColor.white
-                ]
-
-            title.attributedText = NSAttributedString(
-                string: "Task № \(todo.id)",
-                attributes: attributes
-            )
-
+        ? [
+            .strikethroughStyle: NSUnderlineStyle.single.rawValue,
+            .foregroundColor: UIColor.systemGray
+        ] : [
+            .strikethroughStyle: 0,
+            .foregroundColor: UIColor.white
+        ]
+        
+        title.attributedText = NSAttributedString(
+            string: "Task № \(todo.id)",
+            attributes: attributes
+        )
+        
         if !todo.completed {
             statusView.layer.borderWidth = 1
             statusView.layer.borderColor = UIColor.systemYellow.cgColor
         } else {
             statusView.backgroundColor = .yellow
         }
-            descriptionLabel.text = todo.todo
-            date.text = "Today"
-            checkMark.isHidden = !todo.completed
+        descriptionLabel.text = todo.todo
+        
+        if let date = todo.date {
+            dateLabel.text = format(date: date)
+        } else {
+            dateLabel.text = "Select a date"
+        }
+        
+        checkMark.isHidden = !todo.completed
+        
+        
+    }
+    
+    private func format(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        return formatter.string(from: date)
     }
 }

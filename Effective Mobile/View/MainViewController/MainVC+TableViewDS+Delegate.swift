@@ -8,10 +8,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: ToDoListCell.identifier,
-            for: indexPath
-        ) as! ToDoListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ToDoListCell.identifier, for: indexPath) as! ToDoListCell
         
         let todo = todos[indexPath.row]
         cell.configurate(with: todo)

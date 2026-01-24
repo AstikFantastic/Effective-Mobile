@@ -9,10 +9,9 @@ struct Todo: Codable {
     let id: Int
     let todo: String
     var completed: Bool
-    let userID: Int
+    var date: Date?
 
     enum CodingKeys: String, CodingKey {
         case id, todo, completed
-        case userID = "userId"
     }
 }

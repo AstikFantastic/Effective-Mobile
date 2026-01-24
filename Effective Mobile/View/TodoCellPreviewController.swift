@@ -39,23 +39,27 @@ final class TodoCellPreviewController: UIViewController {
         description.font = .systemFont(ofSize: 13)
         description.numberOfLines = 0
         
-        let date = UILabel()
-        date.text = "Today"
-        date.textColor = .lightGray
-        date.font = .systemFont(ofSize: 10)
+        let dateLabel = UILabel()
+        if let date = todo.date {
+            dateLabel.text = format(date: date)
+        } else {
+            dateLabel.text = "Select a date"
+        }
+        dateLabel.textColor = .lightGray
+        dateLabel.font = .systemFont(ofSize: 10)
         
-        let stack = UIStackView(arrangedSubviews: [header, description, date])
+        let stack = UIStackView(arrangedSubviews: [header, description, dateLabel])
         stack.axis = .vertical
         stack.spacing = 6
         stack.setCustomSpacing(4, after: header)
         stack.setCustomSpacing(2, after: description)
         header.setContentHuggingPriority(.required, for: .vertical)
-        date.setContentHuggingPriority(.required, for: .vertical)
+        dateLabel.setContentHuggingPriority(.required, for: .vertical)
 
         card.addSubview(stack)
         view.addSubview(card)
         
-        [header, description, stack, card, date].forEach {
+        [header, description, stack, card, dateLabel].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -72,5 +76,12 @@ final class TodoCellPreviewController: UIViewController {
         ])
         
         preferredContentSize = CGSize(width: UIScreen.main.bounds.width - 50, height: 120)
+    }
+    
+    private func format(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        return formatter.string(from: date)
     }
 }

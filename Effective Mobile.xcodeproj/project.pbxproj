@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88340FC62F2524DA00D6524E /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88340FC22F2524DA00D6524E /* CoreDataService.swift */; };
+		88340FC72F2524DA00D6524E /* Effective_Mobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 88340FC32F2524DA00D6524E /* Effective_Mobile.xcdatamodeld */; };
 		8853815D2F20AF610085DD8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885381532F20AF610085DD8B /* AppDelegate.swift */; };
-		8853815E2F20AF610085DD8B /* Effective_Mobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 885381552F20AF610085DD8B /* Effective_Mobile.xcdatamodeld */; };
 		8853815F2F20AF610085DD8B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885381592F20AF610085DD8B /* SceneDelegate.swift */; };
 		885381602F20AF610085DD8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 885381542F20AF610085DD8B /* Assets.xcassets */; };
 		885381622F20AF610085DD8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 885381582F20AF610085DD8B /* LaunchScreen.storyboard */; };
@@ -26,13 +27,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		88340FC22F2524DA00D6524E /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		88340FC52F2524DA00D6524E /* Effective_Mobile.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Effective_Mobile.xcdatamodel; sourceTree = "<group>"; };
 		8853812D2F20AD730085DD8B /* Effective Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Effective Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		885381532F20AF610085DD8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		885381542F20AF610085DD8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		885381562F20AF610085DD8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		885381572F20AF610085DD8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		885381592F20AF610085DD8B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8853815B2F20AF610085DD8B /* Effective_Mobile.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Effective_Mobile.xcdatamodel; sourceTree = "<group>"; };
 		885381632F20B2260085DD8B /* ToDoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoEntity.swift; sourceTree = "<group>"; };
 		885381652F20B28A0085DD8B /* ToDoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoInteractor.swift; sourceTree = "<group>"; };
 		885381672F20B2CB0085DD8B /* MainViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerPresenter.swift; sourceTree = "<group>"; };
@@ -57,6 +59,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		88340FC42F2524DA00D6524E /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				88340FC32F2524DA00D6524E /* Effective_Mobile.xcdatamodeld */,
+				88340FC22F2524DA00D6524E /* CoreDataService.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		885381242F20AD730085DD8B = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +130,7 @@
 		8853815A2F20AF610085DD8B /* Effective Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				88340FC42F2524DA00D6524E /* CoreData */,
 				885381712F20B8B70085DD8B /* Helpers */,
 				885381522F20AF610085DD8B /* View */,
 				8853814E2F20AF610085DD8B /* Interactor */,
@@ -127,7 +139,6 @@
 				885381502F20AF610085DD8B /* Router */,
 				885381532F20AF610085DD8B /* AppDelegate.swift */,
 				885381542F20AF610085DD8B /* Assets.xcassets */,
-				885381552F20AF610085DD8B /* Effective_Mobile.xcdatamodeld */,
 				885381562F20AF610085DD8B /* Info.plist */,
 				885381582F20AF610085DD8B /* LaunchScreen.storyboard */,
 				885381592F20AF610085DD8B /* SceneDelegate.swift */,
@@ -229,12 +240,13 @@
 				88BFD46F2F2261B60018FE36 /* TodoCellPreviewController.swift in Sources */,
 				88BFD46B2F220B290018FE36 /* MainVC+SearchBar.swift in Sources */,
 				8853816E2F20B2FB0085DD8B /* DetailViewController.swift in Sources */,
+				88340FC62F2524DA00D6524E /* CoreDataService.swift in Sources */,
+				88340FC72F2524DA00D6524E /* Effective_Mobile.xcdatamodeld in Sources */,
 				886919D72F20FD300022DA44 /* MainViewController.swift in Sources */,
 				885381682F20B2CB0085DD8B /* MainViewControllerPresenter.swift in Sources */,
 				8853816A2F20B2D90085DD8B /* DetainViewControllerPresenter.swift in Sources */,
 				8853815D2F20AF610085DD8B /* AppDelegate.swift in Sources */,
 				885381642F20B2260085DD8B /* ToDoEntity.swift in Sources */,
-				8853815E2F20AF610085DD8B /* Effective_Mobile.xcdatamodeld in Sources */,
 				885381662F20B28A0085DD8B /* ToDoInteractor.swift in Sources */,
 				8853815F2F20AF610085DD8B /* SceneDelegate.swift in Sources */,
 				885381732F20B9CD0085DD8B /* ToDoListCell.swift in Sources */,
@@ -468,12 +480,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		885381552F20AF610085DD8B /* Effective_Mobile.xcdatamodeld */ = {
+		88340FC32F2524DA00D6524E /* Effective_Mobile.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				8853815B2F20AF610085DD8B /* Effective_Mobile.xcdatamodel */,
+				88340FC52F2524DA00D6524E /* Effective_Mobile.xcdatamodel */,
 			);
-			currentVersion = 8853815B2F20AF610085DD8B /* Effective_Mobile.xcdatamodel */;
+			currentVersion = 88340FC52F2524DA00D6524E /* Effective_Mobile.xcdatamodel */;
 			path = Effective_Mobile.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
