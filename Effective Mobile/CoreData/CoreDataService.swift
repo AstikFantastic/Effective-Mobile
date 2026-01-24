@@ -39,6 +39,15 @@ final class CoreDataService {
         try? context.save()
     }
     
+    func updateTodo(id: Int, completed: Bool) {
+        let request: NSFetchRequest<ToDoEntity> = ToDoEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %d", id)
+        guard let entity = try? context.fetch(request).first else  { return }
+        entity.completed = completed
+        try? context.save()
+    }
+    
+    
     
     
     

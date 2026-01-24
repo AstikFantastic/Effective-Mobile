@@ -36,6 +36,9 @@ final class MainViewControllerPresenter: MainViewControllerPresenterProtocol {
     func toggleTodoStatus(todoID: Int) {
         guard let indexInAll = todos.firstIndex(where: { $0.id == todoID }) else { return }
         todos[indexInAll].completed.toggle()
+        let newValue = todos[indexInAll].completed
+        
+        CoreDataService.shared.updateTodo(id: todoID, completed: newValue)
         
         if let indexInVisible = searchedTodos.firstIndex(where: { $0.id == todoID }) {
             searchedTodos[indexInVisible].completed.toggle()
