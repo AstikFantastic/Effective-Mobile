@@ -30,7 +30,11 @@ final class CoreDataService {
             )
         }
         if needsSave {
-            try? context.save()
+            do {
+                try context.save()
+            } catch {
+                print(error.localizedDescription)
+            }
         }
         return todos
     }
@@ -45,7 +49,11 @@ final class CoreDataService {
             entity.completed = todo.completed
             entity.date = todo.date
         }
-        try? context.save()
+        do {
+            try context.save()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     func deleteTodo(id: Int) {
@@ -53,7 +61,11 @@ final class CoreDataService {
         request.predicate = NSPredicate(format: "id == %d", id)
         guard let entity = try? context.fetch(request).first else { return }
         context.delete(entity)
-        try? context.save()
+        do {
+            try context.save()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     func updateTodoInformation(id: Int, title: String?, description: String, date: Date?) {
@@ -63,7 +75,11 @@ final class CoreDataService {
         entity.title = title
         entity.todo = description
         entity.date = date
-        try? context.save()
+        do {
+            try context.save()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     func updateTodoCompleted(id: Int, complited: Bool) {
@@ -71,7 +87,11 @@ final class CoreDataService {
         request.predicate = NSPredicate(format: "id == %d", id)
         guard let entity = try? context.fetch(request).first else { return }
         entity.completed = complited
-        try? context.save()
+        do {
+            try context.save()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 
     func createTodo(title: String, description: String, date: Date?) {
@@ -86,6 +106,7 @@ final class CoreDataService {
         do {
             try context.save()
         } catch {
+            print(error.localizedDescription)
         }
     }
 
