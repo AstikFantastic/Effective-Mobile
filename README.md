@@ -5,11 +5,12 @@ Simple iOS application for managing a ToDo list.
 ## Screenshots
 
 <p float="left">
-  <img src="Screenshots/All_tasks.png" width="250" />
-  <img src="Screenshots/Card.png" width="250" />
-  <img src="Screenshots/Change.png" width="250" />
-    <img src="Screenshots/Share_1.png" width="250" />
-      <img src="Screenshots/Search.png" width="250" />
+  <img src="ScreenShots/All tasks.png" width="250" />
+  <img src="ScreenShots/Card.png" width="250" />
+  <img src="ScreenShots/Change.png" width="250" />
+    <img src="ScreenShots/Share 1.png" width="250" />
+      <img src="ScreenShots/Search.png" width="250" />
+        <img src="ScreenShots/New task.png" width="250" />
 </p>
 
 ### Features
