@@ -2,6 +2,14 @@
 
 Simple iOS application for managing a ToDo list.
 
+### Screenshots
+
+| Main Screen | Search | Edit Task | Preview |
+|------------|--------|-----------|---------|
+| ![](Screenshots/All_tasks.png) | ![](Screenshots/Card.png) | ![](Screenshots/Change.png) | ![](Screenshots/New_task.png) | ![](Screenshots/Share_1.png) | ![](Screenshots/Share_2.png) | ![](Screenshots/Search.png)
+
+
+
 ### Features
 - Display list of tasks on the main screen  
 - Each task contains: title, description, creation date and status  
