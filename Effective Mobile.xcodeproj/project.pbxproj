@@ -26,6 +26,16 @@
 		88BFD46F2F2261B60018FE36 /* TodoCellPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BFD46E2F2261B60018FE36 /* TodoCellPreviewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8867E72A2F264DFF00FD85E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 885381252F20AD730085DD8B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8853812C2F20AD730085DD8B;
+			remoteInfo = "Effective Mobile";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		88340FC22F2524DA00D6524E /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		88340FC52F2524DA00D6524E /* Effective_Mobile.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Effective_Mobile.xcdatamodel; sourceTree = "<group>"; };
@@ -42,14 +52,30 @@
 		8853816D2F20B2FB0085DD8B /* EditTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoViewController.swift; sourceTree = "<group>"; };
 		8853816F2F20B3300085DD8B /* UserRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRouter.swift; sourceTree = "<group>"; };
 		885381722F20B9CD0085DD8B /* ToDoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListCell.swift; sourceTree = "<group>"; };
+		8867E7262F264DFF00FD85E2 /* Effective_MobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Effective_MobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		886919D52F20FD300022DA44 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		88BFD4682F21FBE60018FE36 /* MainVC+TableViewDS+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+TableViewDS+Delegate.swift"; sourceTree = "<group>"; };
 		88BFD46A2F220B290018FE36 /* MainVC+SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+SearchBar.swift"; sourceTree = "<group>"; };
 		88BFD46E2F2261B60018FE36 /* TodoCellPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCellPreviewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		8867E7272F264DFF00FD85E2 /* Effective_MobileTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Effective_MobileTests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		8853812A2F20AD730085DD8B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8867E7232F264DFF00FD85E2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -72,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				8853815A2F20AF610085DD8B /* Effective Mobile */,
+				8867E7272F264DFF00FD85E2 /* Effective_MobileTests */,
 				8853812E2F20AD730085DD8B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -80,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				8853812D2F20AD730085DD8B /* Effective Mobile.app */,
+				8867E7262F264DFF00FD85E2 /* Effective_MobileTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,6 +214,29 @@
 			productReference = 8853812D2F20AD730085DD8B /* Effective Mobile.app */;
 			productType = "com.apple.product-type.application";
 		};
+		8867E7252F264DFF00FD85E2 /* Effective_MobileTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8867E72C2F264DFF00FD85E2 /* Build configuration list for PBXNativeTarget "Effective_MobileTests" */;
+			buildPhases = (
+				8867E7222F264DFF00FD85E2 /* Sources */,
+				8867E7232F264DFF00FD85E2 /* Frameworks */,
+				8867E7242F264DFF00FD85E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8867E72B2F264DFF00FD85E2 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8867E7272F264DFF00FD85E2 /* Effective_MobileTests */,
+			);
+			name = Effective_MobileTests;
+			packageProductDependencies = (
+			);
+			productName = Effective_MobileTests;
+			productReference = 8867E7262F264DFF00FD85E2 /* Effective_MobileTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -198,6 +249,10 @@
 				TargetAttributes = {
 					8853812C2F20AD730085DD8B = {
 						CreatedOnToolsVersion = 26.1.1;
+					};
+					8867E7252F264DFF00FD85E2 = {
+						CreatedOnToolsVersion = 26.1.1;
+						TestTargetID = 8853812C2F20AD730085DD8B;
 					};
 				};
 			};
@@ -216,6 +271,7 @@
 			projectRoot = "";
 			targets = (
 				8853812C2F20AD730085DD8B /* Effective Mobile */,
+				8867E7252F264DFF00FD85E2 /* Effective_MobileTests */,
 			);
 		};
 /* End PBXProject section */
@@ -227,6 +283,13 @@
 			files = (
 				885381602F20AF610085DD8B /* Assets.xcassets in Resources */,
 				885381622F20AF610085DD8B /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8867E7242F264DFF00FD85E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,7 +318,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8867E7222F264DFF00FD85E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8867E72B2F264DFF00FD85E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8853812C2F20AD730085DD8B /* Effective Mobile */;
+			targetProxy = 8867E72A2F264DFF00FD85E2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		885381582F20AF610085DD8B /* LaunchScreen.storyboard */ = {
@@ -456,6 +534,50 @@
 			};
 			name = Release;
 		};
+		8867E72D2F264DFF00FD85E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 94BBMDY9VT;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.astimirMaryshev.Effective-MobileTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Effective Mobile.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Effective Mobile";
+			};
+			name = Debug;
+		};
+		8867E72E2F264DFF00FD85E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 94BBMDY9VT;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.astimirMaryshev.Effective-MobileTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Effective Mobile.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Effective Mobile";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -473,6 +595,15 @@
 			buildConfigurations = (
 				885381442F20AD750085DD8B /* Debug */,
 				885381452F20AD750085DD8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8867E72C2F264DFF00FD85E2 /* Build configuration list for PBXNativeTarget "Effective_MobileTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8867E72D2F264DFF00FD85E2 /* Debug */,
+				8867E72E2F264DFF00FD85E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
