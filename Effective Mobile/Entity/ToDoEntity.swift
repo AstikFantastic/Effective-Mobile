@@ -7,6 +7,7 @@ struct EmbeddedModel: Codable {
 
 struct Todo: Codable {
     let id: Int
+    var title: String?
     let todo: String
     var completed: Bool
     var date: Date?

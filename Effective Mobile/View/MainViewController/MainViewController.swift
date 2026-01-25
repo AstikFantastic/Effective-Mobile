@@ -4,6 +4,8 @@ protocol MainViewControllerProtocol: AnyObject {
     func showTodos(_ todos: [Todo])
     func showError(_ message: String)
     func updateTodo(at index: Int, todo: Todo)
+    func showTotalCount(_ count: Int)
+    func deleteRow(at index: Int, updatedTodos: [Todo])
 }
 
 final class MainViewController: UIViewController, MainViewControllerProtocol {
@@ -17,6 +19,7 @@ final class MainViewController: UIViewController, MainViewControllerProtocol {
     private let bottomSafeArea = UIView()
     private let allTasksCount = UILabel()
     private let addNewTask = UIButton()
+    private var totalTodosCount: Int = 0
     let image = UIImage(
         systemName: "square.and.pencil",
         withConfiguration: UIImage.SymbolConfiguration(
@@ -26,12 +29,17 @@ final class MainViewController: UIViewController, MainViewControllerProtocol {
     )
     private var blurView: UIVisualEffectView?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         presenter?.viewDidLoad()
         hideKeyboard()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        presenter?.viewDidLoad()
     }
     
     // MARK: - Setup UI
@@ -61,7 +69,6 @@ final class MainViewController: UIViewController, MainViewControllerProtocol {
         tableView.dataSource = self
         tableView.delegate = self
         
-        
         view.addSubview(tableView)
         
         bottomSafeArea.backgroundColor = .darkGray
@@ -76,7 +83,6 @@ final class MainViewController: UIViewController, MainViewControllerProtocol {
         
         addNewTask.setImage(image, for: .normal)
         addNewTask.imageView?.tintColor = .yellow
-        
         
         view.addSubview(addNewTask)
         
@@ -129,6 +135,7 @@ final class MainViewController: UIViewController, MainViewControllerProtocol {
     func showTodos(_ todos: [Todo]) {
         self.todos = todos
         tableView.reloadData()
+        updateTasksCount()
     }
     
     func showError(_ message: String) {
@@ -141,17 +148,32 @@ final class MainViewController: UIViewController, MainViewControllerProtocol {
         tableView.reloadRows(at: [indexPath], with: .none)
     }
     
+    func showTotalCount(_ count: Int) {
+        totalTodosCount = count
+        updateTasksCount()
+    }
+    
+    private func updateTasksCount() {
+        allTasksCount.text = "\(totalTodosCount) tasks"
+    }
+    
+    func deleteRow(at index: Int, updatedTodos: [Todo]) {
+        self.todos = updatedTodos
+        let indexPath = IndexPath(row: index, section: 0)
+        tableView.beginUpdates()
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        tableView.endUpdates()
+    }
+    
     //MARK: - Blur Methods
     
     func showBlurImmediately() {
         guard blurView == nil else { return }
-
         let blurEffect = UIBlurEffect(style: .systemChromeMaterialDark)
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.frame = view.bounds
         blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         blurView.alpha = 0
-
         view.insertSubview(blurView, aboveSubview: tableView)
         self.blurView = blurView
     }

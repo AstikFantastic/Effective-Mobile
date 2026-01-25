@@ -4,18 +4,17 @@ protocol MainViewControllerPresenterProtocol: AnyObject {
     func viewDidLoad()
     func didTapDelete(at index: Int)
     func didTapShare()
-    func didTapEdit()
     func search(text: String)
     func didLoadTodos(_ todos: [Todo])
     func didFail(error: Error)
     func toggleTodoStatus(todoID: Int)
+    func didSelectEditTodo(_ todo: Todo)
 }
 
 final class MainViewControllerPresenter: MainViewControllerPresenterProtocol {
-    
-    
     weak var view: MainViewControllerProtocol?
     var interactor: TodoListInteractorProtocol?
+    var router: UsersRouterProtocol?
     private var todos: [Todo] = []
     private var searchedTodos: [Todo] = []
     
@@ -27,6 +26,7 @@ final class MainViewControllerPresenter: MainViewControllerPresenterProtocol {
         self.todos = todos
         searchedTodos = todos
         view?.showTodos(todos)
+        view?.showTotalCount(todos.count)
     }
     
     func didFail(error: Error) {
@@ -37,24 +37,24 @@ final class MainViewControllerPresenter: MainViewControllerPresenterProtocol {
         guard let indexInAll = todos.firstIndex(where: { $0.id == todoID }) else { return }
         todos[indexInAll].completed.toggle()
         let newValue = todos[indexInAll].completed
-        
-        CoreDataService.shared.updateTodo(id: todoID, completed: newValue)
-        
+        interactor?.updateTodoCompleted(id: todoID, complited: newValue)
         if let indexInVisible = searchedTodos.firstIndex(where: { $0.id == todoID }) {
             searchedTodos[indexInVisible].completed.toggle()
             view?.updateTodo(at: indexInVisible, todo: searchedTodos[indexInVisible])
         }
     }
-        
+    
     func didTapDelete(at index: Int) {
-        
+        let todo = searchedTodos[index]
+        interactor?.deleteTodo(id: todo.id)
+        searchedTodos.remove(at: index)
+        todos.removeAll { $0.id == todo.id }
+        view?.deleteRow(at: index, updatedTodos: searchedTodos)
+        view?.showTotalCount(todos.count)
     }
+
     
     func didTapShare() {
-        
-    }
-    
-    func didTapEdit() {
         
     }
     
@@ -68,5 +68,14 @@ final class MainViewControllerPresenter: MainViewControllerPresenterProtocol {
             $0.todo.lowercased().contains(text.lowercased())
         }
         view?.showTodos(searchedTodos)
+    }
+    
+    func didSelectEditTodo(_ todo: Todo) {
+        let updatedTodos = CoreDataService.shared.fetchTodos()
+        guard let freshTodo = updatedTodos.first(where: { $0.id == todo.id }) else {
+            router?.openEditTodo(todo: todo)
+            return
+        }
+        router?.openEditTodo(todo: freshTodo)
     }
 }

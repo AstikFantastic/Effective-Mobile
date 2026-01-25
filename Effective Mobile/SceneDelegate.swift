@@ -9,7 +9,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        window?.rootViewController = UserRouter.createModule()
+        let main = UserRouter.createModule()
+        let nav = UINavigationController(rootViewController: main)
+        window?.rootViewController = nav
         window?.makeKeyAndVisible()
     }
 

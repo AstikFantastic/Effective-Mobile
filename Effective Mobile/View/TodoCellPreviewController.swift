@@ -14,22 +14,20 @@ final class TodoCellPreviewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
+        super.viewDidLoad() 
         setupUI()
     }
     
     // MARK: - Setup UI
     
     private func setupUI() {
-        
         let card = UIView()
         card.backgroundColor = .darkGray
         card.layer.cornerRadius = 16
         card.layer.masksToBounds = true
         
         let header = UILabel()
-        header.text = "Task № \(todo.id)"
+        header.text = todo.title ?? "Task № \(todo.id)"
         header.textColor = .white
         header.font = .systemFont(ofSize: 17, weight: .bold)
         

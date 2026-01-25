@@ -9,46 +9,69 @@ final class CoreDataService {
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     func fetchTodos() -> [Todo] {
-        
         let request: NSFetchRequest<ToDoEntity> = ToDoEntity.fetchRequest()
-        
         request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
-        
         let entities = (try? context.fetch(request)) ?? []
-        
-        return entities.map {
-            Todo(
-                id: Int($0.id),
-                todo: $0.todo ?? "",
-                completed: $0.completed,
-                date: $0.date
+        var needsSave = false
+        let todos = entities.map { entity -> Todo in
+            var title = entity.title
+            if let t = title?.trimmingCharacters(in: .whitespacesAndNewlines),
+               t == "Task №" || t.isEmpty {
+                title = nil
+                entity.title = nil
+                needsSave = true
+            }
+            return Todo(
+                id: Int(entity.id),
+                title: title,
+                todo: entity.todo ?? "",
+                completed: entity.completed,
+                date: entity.date
             )
         }
+        if needsSave {
+            try? context.save()
+        }
+        return todos
     }
-
+    
     func saveTodos(_ todos: [Todo]) {
-        
-        todos.forEach { todo in
-            let entity = ToDoEntity(context: context)
+        for todo in todos {
+            let request: NSFetchRequest<ToDoEntity> = ToDoEntity.fetchRequest()
+            request.predicate = NSPredicate(format: "id == %d", todo.id)
+            let entity = (try? context.fetch(request).first) ?? ToDoEntity(context: context)
             entity.id = Int64(todo.id)
             entity.todo = todo.todo
             entity.completed = todo.completed
             entity.date = todo.date
         }
-        
         try? context.save()
     }
     
-    func updateTodo(id: Int, completed: Bool) {
+    func deleteTodo(id: Int) {
         let request: NSFetchRequest<ToDoEntity> = ToDoEntity.fetchRequest()
         request.predicate = NSPredicate(format: "id == %d", id)
-        guard let entity = try? context.fetch(request).first else  { return }
-        entity.completed = completed
+        guard let entity = try? context.fetch(request).first else { return }
+        context.delete(entity)
         try? context.save()
     }
     
+    func updateTodoInformation(id: Int, title: String?, description: String, date: Date?) {
+        let request: NSFetchRequest<ToDoEntity> = ToDoEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %d", id)
+        guard let entity = try? context.fetch(request).first else { return }
+        entity.title = title
+        entity.todo = description
+        entity.date = date
+        try? context.save()
+    }
     
-    
-    
-    
+    func updateTodoCompleted(id: Int, complited: Bool) {
+        let request: NSFetchRequest<ToDoEntity> = ToDoEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %d", id)
+        guard let entity = try? context.fetch(request).first else { return }
+        entity.completed = complited
+        try? context.save()
+    }
+
 }

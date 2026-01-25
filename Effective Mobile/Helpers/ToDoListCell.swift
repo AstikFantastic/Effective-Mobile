@@ -5,7 +5,7 @@ final class ToDoListCell: UITableViewCell {
     static let identifier = "ToDoListCell"
     
     private let title = UILabel()
-    private var dateLabel = UILabel() // Скорректировать дату
+    private var dateLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let statusView = UIView()
     private let checkMark = UIImageView()
@@ -89,7 +89,6 @@ final class ToDoListCell: UITableViewCell {
             descriptionLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
             descriptionLabel.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 10),
             
-            
             dateLabel.leadingAnchor.constraint(equalTo: title.leadingAnchor),
             dateLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -7)
         ])
@@ -109,11 +108,9 @@ final class ToDoListCell: UITableViewCell {
             .strikethroughStyle: 0,
             .foregroundColor: UIColor.white
         ]
-        
-        title.attributedText = NSAttributedString(
-            string: "Task № \(todo.id)",
-            attributes: attributes
-        )
+
+        let titleText = todo.title ?? "Task № \(todo.id)"
+        title.attributedText = NSAttributedString(string: titleText, attributes: attributes)
         
         if !todo.completed {
             statusView.layer.borderWidth = 1
@@ -130,7 +127,6 @@ final class ToDoListCell: UITableViewCell {
         }
         
         checkMark.isHidden = !todo.completed
-        
         
     }
     
