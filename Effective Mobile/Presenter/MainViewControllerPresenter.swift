@@ -3,7 +3,7 @@ import UIKit
 protocol MainViewControllerPresenterProtocol: AnyObject {
     func viewDidLoad()
     func didTapDelete(at index: Int)
-    func didTapShare()
+    func didTapShare(_ todo: Todo)
     func search(text: String)
     func didLoadTodos(_ todos: [Todo])
     func didFail(error: Error)
@@ -53,9 +53,27 @@ final class MainViewControllerPresenter: MainViewControllerPresenterProtocol {
         view?.showTotalCount(todos.count)
     }
 
-    
-    func didTapShare() {
+    func didTapShare(_ todo: Todo) {
+        let title = todo.title ?? "Task № \(todo.id)"
+        let description = todo.todo
+        let status = todo.completed ? "Completed" : "Not Complited"
+        let dateText: String
+        if let date = todo.date {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .none
+            dateText = formatter.string(from: date)
+        } else {
+            dateText = "Date not selected"
+        }
+        let text = """
+            Task: \(title)
+            Description: \(description)
+            Date: \(dateText)
+            Status: \(status)
+            """
         
+        router?.openShare(text: text)
     }
     
     func search(text: String) {

@@ -3,10 +3,12 @@ import UIKit
 protocol UsersRouterProtocol: AnyObject {
     static func createModule() -> UIViewController
     func openEditTodo(todo: Todo)
+    func openShare(text: String)
 }
 
 final class UserRouter: UsersRouterProtocol {
     
+    weak var navigationController: UINavigationController?
     weak var interactor: TodoListInteractorProtocol?
     
     static func createModule() -> UIViewController {
@@ -14,6 +16,7 @@ final class UserRouter: UsersRouterProtocol {
         let presenter = MainViewControllerPresenter()
         let interactor = ToDoInteractor()
         let router = UserRouter()
+        let nav = UINavigationController(rootViewController: view)
         
         view.presenter = presenter
         presenter.view = view
@@ -21,20 +24,19 @@ final class UserRouter: UsersRouterProtocol {
         interactor.presenter = presenter
         presenter.router = router
         router.interactor = interactor
+        router.navigationController = nav
         
-        return view
+        return nav
     }
     
     func openEditTodo(todo: Todo) {
         let editVC = EditTodoViewController(todo: todo)
         editVC.interactor = interactor
-        guard let topVC = UIApplication.shared.windows.first?.rootViewController else { return }
-        if let nav = topVC as? UINavigationController {
-            nav.pushViewController(editVC, animated: true)
-        } else {
-            topVC.navigationController?.pushViewController(editVC, animated: true)
-        }
+        navigationController?.pushViewController(editVC, animated: true)
     }
     
-    
+    func openShare(text: String) {
+        let activityVC = UIActivityViewController(activityItems: [text], applicationActivities: nil)
+        navigationController?.present(activityVC, animated: true)
+    }
 }

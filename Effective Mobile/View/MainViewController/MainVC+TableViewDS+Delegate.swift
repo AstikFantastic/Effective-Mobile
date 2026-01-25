@@ -48,8 +48,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                 title: "Share",
                 image: UIImage(systemName: "square.and.arrow.up")
             ) { _ in
-                self.presenter?.didTapShare()
-                print("Share it")
+                self.presenter?.didTapShare(todo)
             }
             
             let delete = UIAction(
