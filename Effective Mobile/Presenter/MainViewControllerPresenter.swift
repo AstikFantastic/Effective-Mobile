@@ -9,6 +9,7 @@ protocol MainViewControllerPresenterProtocol: AnyObject {
     func didFail(error: Error)
     func toggleTodoStatus(todoID: Int)
     func didSelectEditTodo(_ todo: Todo)
+    func didTapAddNew()
 }
 
 final class MainViewControllerPresenter: MainViewControllerPresenterProtocol {
@@ -17,6 +18,7 @@ final class MainViewControllerPresenter: MainViewControllerPresenterProtocol {
     var router: UsersRouterProtocol?
     private var todos: [Todo] = []
     private var searchedTodos: [Todo] = []
+    
     
     func viewDidLoad() {
         interactor?.loadTodos()
@@ -77,17 +79,25 @@ final class MainViewControllerPresenter: MainViewControllerPresenterProtocol {
     }
     
     func search(text: String) {
-        guard !text.isEmpty else {
+        let query = text.lowercased()
+        guard !query.isEmpty else {
             searchedTodos = todos
             view?.showTodos(todos)
             return
         }
-        searchedTodos = todos.filter {
-            $0.todo.lowercased().contains(text.lowercased())
+        searchedTodos = todos.filter { todo in
+            let inTitle = todo.displayTitle
+                .lowercased()
+                .contains(query)
+            let inDescription = todo.todo
+                .lowercased()
+                .contains(query)
+            return inTitle || inDescription
         }
         view?.showTodos(searchedTodos)
     }
-    
+
+
     func didSelectEditTodo(_ todo: Todo) {
         let updatedTodos = CoreDataService.shared.fetchTodos()
         guard let freshTodo = updatedTodos.first(where: { $0.id == todo.id }) else {
@@ -95,5 +105,9 @@ final class MainViewControllerPresenter: MainViewControllerPresenterProtocol {
             return
         }
         router?.openEditTodo(todo: freshTodo)
+    }
+    
+    func didTapAddNew() {
+        router?.openCreateTodo()
     }
 }

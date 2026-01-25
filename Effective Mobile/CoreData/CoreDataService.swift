@@ -74,4 +74,19 @@ final class CoreDataService {
         try? context.save()
     }
 
+    func createTodo(title: String, description: String, date: Date?) {
+        let entity = ToDoEntity(context: context)
+        let request: NSFetchRequest<ToDoEntity> = ToDoEntity.fetchRequest()
+        let maxId = (try? context.fetch(request).map { Int($0.id) }.max()) ?? 0
+        entity.id = Int64(maxId + 1)
+        entity.title = title.isEmpty ? "New Task" : title
+        entity.todo = description
+        entity.completed = false
+        entity.date = date
+        do {
+            try context.save()
+        } catch {
+        }
+    }
+
 }

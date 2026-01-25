@@ -1,12 +1,23 @@
 import UIKit
 
+enum EditMode {
+    case create
+    case edit(Todo)
+}
+
 final class EditTodoViewController: UIViewController {
     
-    private var todo: Todo
+    private let mode: EditMode
+    
     var interactor: TodoListInteractorProtocol?
     
     init(todo: Todo) {
-        self.todo = todo
+        self.mode = .edit(todo)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    init() {
+        self.mode = .create
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -18,9 +29,6 @@ final class EditTodoViewController: UIViewController {
     private var datePicker = UIDatePicker()
     private var descriptionTextView = UITextView()
     private let descriptionPlaceholder = "Enter description"
-    private var fallbackTitle: String {
-        "Task № \(todo.id)"
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,14 +50,22 @@ final class EditTodoViewController: UIViewController {
     //MARK: - Setup UI
     
     private func setupUI() {
+        switch mode {
+        case .create:
+            headerTextField.text = ""
+            descriptionTextView.text = ""
+            datePicker.date = Date()
+        case .edit(let todo):
+            headerTextField.text = todo.title ?? "Task № \(todo.id)"
+            descriptionTextView.text = todo.todo
+            datePicker.date = todo.date ?? Date()
+        }
         
-        headerTextField.text = todo.title ?? fallbackTitle
         headerTextField.textColor = .white
         headerTextField.font = UIFont.systemFont(ofSize: 33, weight: .bold)
-        headerTextField.placeholder = fallbackTitle
+        headerTextField.placeholder = "Task"
         view.addSubview(headerTextField)
         
-        datePicker.date = todo.date ?? Date()
         datePicker.datePickerMode = .date
         datePicker.overrideUserInterfaceStyle = .light
         datePicker.backgroundColor = .white
@@ -57,7 +73,6 @@ final class EditTodoViewController: UIViewController {
         datePicker.clipsToBounds = true
         view.addSubview(datePicker)
         
-        descriptionTextView.text = todo.todo
         descriptionTextView.textColor = .white
         descriptionTextView.font = UIFont.systemFont(ofSize: 15)
         descriptionTextView.backgroundColor = .clear
@@ -94,7 +109,14 @@ final class EditTodoViewController: UIViewController {
         let newDescription = rawDescription?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         let newDate = datePicker.date
         let finalTitle: String? = (rawTitle?.isEmpty == true) ? nil : rawTitle
-        interactor?.updateTodoInformation(id: todo.id, title: finalTitle ?? "Task", desctiption: newDescription, date: newDate)
+        
+        switch mode {
+        case .create:
+            interactor?.createTodo(title: finalTitle ?? "Task", description: newDescription, date: newDate)
+        case .edit(let todo):
+            interactor?.updateTodoInformation(id: todo.id, title: finalTitle ?? "Task", desctiption: newDescription, date: newDate)
+        }
+        
     }
     
 }

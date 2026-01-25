@@ -4,6 +4,7 @@ protocol UsersRouterProtocol: AnyObject {
     static func createModule() -> UIViewController
     func openEditTodo(todo: Todo)
     func openShare(text: String)
+    func openCreateTodo()
 }
 
 final class UserRouter: UsersRouterProtocol {
@@ -38,5 +39,11 @@ final class UserRouter: UsersRouterProtocol {
     func openShare(text: String) {
         let activityVC = UIActivityViewController(activityItems: [text], applicationActivities: nil)
         navigationController?.present(activityVC, animated: true)
+    }
+    
+    func openCreateTodo() {
+        let createVC = EditTodoViewController()
+        createVC.interactor = interactor
+        navigationController?.pushViewController(createVC, animated: true)
     }
 }

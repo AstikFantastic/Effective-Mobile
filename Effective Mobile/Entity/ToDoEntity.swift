@@ -11,8 +11,11 @@ struct Todo: Codable {
     let todo: String
     var completed: Bool
     var date: Date?
-
+    var displayTitle: String {
+        title ?? "Task № \(id)"
+    }
     enum CodingKeys: String, CodingKey {
         case id, todo, completed
     }
+    
 }

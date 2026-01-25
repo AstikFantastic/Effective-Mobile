@@ -83,6 +83,7 @@ final class MainViewController: UIViewController, MainViewControllerProtocol {
         
         addNewTask.setImage(image, for: .normal)
         addNewTask.imageView?.tintColor = .yellow
+        addNewTask.addTarget(self, action: #selector(addTapped), for: .touchUpInside)
         
         view.addSubview(addNewTask)
         
@@ -197,6 +198,12 @@ final class MainViewController: UIViewController, MainViewControllerProtocol {
             blurView.removeFromSuperview()
             self.blurView = nil
         }
+    }
+ 
+        //MARK: - Actions
+    
+    @objc private func addTapped() {
+        presenter?.didTapAddNew()
     }
     
 }

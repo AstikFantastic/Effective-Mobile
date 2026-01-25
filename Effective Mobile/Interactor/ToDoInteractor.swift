@@ -5,6 +5,7 @@ protocol TodoListInteractorProtocol: AnyObject {
     func deleteTodo(id: Int)
     func updateTodoInformation(id: Int, title: String, desctiption: String, date: Date?)
     func updateTodoCompleted(id: Int, complited: Bool)
+    func createTodo(title: String, description: String, date: Date?)
 }
 
 final class ToDoInteractor: TodoListInteractorProtocol {
@@ -32,6 +33,17 @@ final class ToDoInteractor: TodoListInteractorProtocol {
     
     func updateTodoCompleted(id: Int, complited: Bool) {
         coreData.updateTodoCompleted(id: id, complited: complited)
+    }
+    
+    func createTodo(title: String, description: String, date: Date?) {
+        coreData.createTodo(
+                title: title,
+                description: description,
+                date: date
+            )
+
+            let updatedTodos = coreData.fetchTodos()
+            presenter?.didLoadTodos(updatedTodos)
     }
     
     
